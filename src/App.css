@@ -1,0 +1,177 @@
+/* ======== ESTILOS GENERALES ======== */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: rgb(129, 160, 57);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 960px;
+  min-height: 80vh;
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2rem;
+  color:white;
+  margin-bottom: 1rem;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  background-color: #ff6f61;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+button:hover {
+  background-color: #e85c50;
+}
+
+/* ======== MENSAJE DE VICTORIA ======== */
+.victory-message {
+  background-color: #aee90d;
+  border: 2px solid #c2a41e;
+  padding: 1rem;
+  margin: 1rem auto;
+  border-radius: 10px;
+  animation: pop 0.6s ease-in-out;
+  max-width: 80%;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ======== TABLERO DE CARTAS ======== */
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  max-width: 100%;
+}
+
+/* Grid adaptable */
+@media (min-width: 768px) {
+  .game-board {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .game-board {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .game-board {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ======== CARTAS ======== */
+.card {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: #14f873;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid #a9ee08;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  perspective: 1000px;
+}
+
+.card-inner {
+  position:relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  top: 0;
+  left: 0;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.card-front {
+  transform: rotateY(180deg);
+  z-index: 2;
+}
+
+/* Imagen al frente */
+.card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+}
+
+/* Reverso de la carta */
+.card-back {
+  background-color: #14f873;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  border: 2px solid #29be36;
+  z-index: 1;
+}
+
+/* Animación cuando hacen match */
+.card.matched .card-inner {
+  animation: matchGlow 0.6s ease-in-out;
+}
+
+@keyframes matchGlow {
+  0% {
+    box-shadow: 0 0 0px #0f0;
+  }
+  50% {
+    box-shadow: 0 0 15px #0f0;
+  }
+  100% {
+    box-shadow: 0 0 0px #0f0;
+  }
+}

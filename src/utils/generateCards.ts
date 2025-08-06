@@ -1,0 +1,24 @@
+import type { CardType } from "../types/Card";
+
+const images = [
+  "TUTO.png",
+  "SAMUEL.png",
+  "RODRIGO.png",
+  "PAVEL.png",
+  "MANFRED.png",
+  "JHONNY.png",
+  "EDUARDO.png",
+  "ANDRONICO.png",
+];
+
+export const generateShuffledCards = (): CardType[] => {
+  const paired = [...images, ...images];
+  const shuffled = paired.sort(() => Math.random() - 0.5);
+
+  return shuffled.map((img, index) => ({
+    id: index,
+    image: `/images/${img}`,
+    matched: false,
+    flipped: false,
+  }));
+};
