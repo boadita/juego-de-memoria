@@ -2,13 +2,9 @@ import type { CardType } from "../types/Card";
 
 const images = [
   "TUTO.png",
-  "SAMUEL.png",
+  "jp.png",
   "RODRIGO.png",
-  "PAVEL.png",
-  "MANFRED.png",
-  "JHONNY.png",
-  "EDUARDO.png",
-  "ANDRONICO.png",
+  "LARA.png",
 ];
 
 export const generateShuffledCards = (): CardType[] => {
